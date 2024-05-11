@@ -6,5 +6,5 @@ from . import views
 
 urlpatterns = [
     path('clientes/', views.cliente_list),
-    path('clientecreate/', csrf_exempt(views.client_create), name='clientCreate'),
+    path('clientecreate/', csrf_exempt(views.create_cliente), name='clientCreate'),
 ]
