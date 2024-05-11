@@ -6,7 +6,7 @@ from .forms import SolicitudForm
 from .logic.solicitudesLogic import create_solicitud, get_solicitudes
 from django.contrib.auth.decorators import login_required
 # Descomentar cuando se cree el archivo monitoring/auth0backend.py
-#from monitoring.auth0backend import getRole
+from monitoring.auth0backend import getRole
 
 @login_required
 def solicitud_list(request):

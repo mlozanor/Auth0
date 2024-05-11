@@ -22,4 +22,7 @@ urlpatterns = [
     path('', views.index),
     path('', include('clientes.urls')),
     path('', include('solicitudes.urls')),
+    path(r'', include('django.contrib.auth.urls')),
+    path(r'', include('social_django.urls')),
+
 ]

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'solicitudes',
     'clientes',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -76,11 +77,16 @@ WSGI_APPLICATION = 'monitoring.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'monitoring_db',
+         'USER': 'monitoring_user',
+         'PASSWORD': 'isis2503',
+         'HOST': '10.128.0.60',
+         'PORT': '',
+     }
+ }
+
 
 
 # Password validation
@@ -125,3 +131,29 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://mlozanor.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.70.191.209:8080"
+
+
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'mlozanor.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'T1OA1ax7nprfSKqww6BwCk4kZbAw7pM0'
+SOCIAL_AUTH_AUTH0_SECRET = 'wn-QierU0SyoWYMFD0G4b5RuO7naZN6OKefE1Xx-JQLseoY96BNoNwstXK9B7d9O'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [
+	'openid',
+	'profile',
+	'email',
+	'role',
+]
+
+
+
+AUTHENTICATION_BACKENDS = {
+	'monitoring.auth0backend.Auth0',
+	'django.contrib.auth.backends.ModelBackend',
+
+}
+
